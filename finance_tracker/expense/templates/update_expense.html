@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Update Expense</title>
+</head>
+<body>
+    <h2>Update Expense Entry</h2>
+    <form method="post">
+        {% csrf_token %}
+        
+        <td>
+            <input type="number" name="amount" placeholder="amount" value="{{ Expense.amount }}" required>
+        </td>
+        <td>
+            <input type="date" name="date"  value="{{ Expense.date|date:'Y-m-d' }}" required>
+        </td>
+        <td>
+            <input type="text" name="description" placeholder="description"  value="{{ Expense.description }}" required>
+        </td>
+            
+        <button type="submit">Update</button>
+        <a href="{% url 'expense_list' %}">Cancel</a>
+    </form>
+</body>
+{% endblock %}

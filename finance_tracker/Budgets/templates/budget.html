@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Add Budgets</h1>
+    <form method="post">
+        {% csrf_token %}
+        <td>
+            <input type="number" name="b_id"  placeholder="Budget_id" value="{{ Budget.b_id }}" required>
+        </td>
+        <td>
+            <input type="text" name="category" placeholder="Category" value="{{ Budget.category  }}" required>
+        </td>
+        <td>
+            <input type="number" name="amount" placeholder="amount" value="{{ expense.amount }}" required>
+        </td>
+        <td>
+            <input type="date" name="date"  value="{{ Budget.date|date:'Y-m-d' }}" required>
+        </td>
+        <td>
+
+            <button type="submit" name="add">add</button>
+        </td>
+        
+    </form>
+  
+{% endblock %}

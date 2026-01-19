@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <title>Update Income</title>
+</head>
+<body>
+    <h2>Update Income Entry</h2>
+    <form method="post">
+        {% csrf_token %}
+        
+        <td>
+            <input type="number" name="amount" placeholder="amount" value="{{ income.amount }}" required>
+        </td>
+        <td>
+            <input type="text" name="source" placeholder="source" value="{{ income.source }}" required>
+        </td>
+        <td>
+            <input type="date" name="date"  value="{{ income.date|date:'Y-m-d' }}" required>
+        </td>
+        <td>
+            <input type="text" name="description" placeholder="description"  value="{{ income.description }}" required>
+        </td>
+            
+        <button type="submit">Update</button>
+        <a href="{% url 'income_list' %}">Cancel</a>
+    </form>
+</body>
+{% endblock %}

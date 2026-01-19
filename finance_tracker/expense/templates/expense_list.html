@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>expense List</h1>
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Sr_no</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Date</th>
+                <th scope="col">Description</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+        {% for expense in expenses %}
+        <tr>
+            <th scope="row">{{expense.Sr_no}}</th>
+            <td>{{ expense.amount }}</td>
+            <td>{{ expense.date }}</td>
+            <td>{{ expense.description }}</td>
+            <td>
+              {% if expense.Sr_no %} 
+              <form action="{% url 'update_expense' expense.Sr_no %}" method="post">
+              {% csrf_token %}
+              <button type="submit" name="Update">Update</button>
+          </form>
+       
+            
+            <form action="{% url 'delete_expense' expense.Sr_no %}" method="post">
+              {% csrf_token %}
+              <button type="submit" name="delete">Delete</button>
+          </form>
+          {% else %}
+          <!-- Optionally, show a message or placeholder for missing Sr_no -->
+          <p>Update not available</p>
+      {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No expense entries found.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<a href="{% url 'expense' %}">Add New expense</a> 
+{% endblock %}

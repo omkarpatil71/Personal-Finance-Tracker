@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Create Expense Entry</h1>
+    <form method="post">
+        {% csrf_token %}
+        <td>
+            <input type="number" name="Sr_no"  placeholder="Sr_no" value="{{ expense.Sr_no }}" required>
+        </td>
+        <td>
+            <input type="number" name="amount" placeholder="amount" value="{{ expense.amount }}" required>
+        </td>
+        <td>
+            <input type="date" name="date"  value="{{ expense.date|date:'Y-m-d' }}" required>
+        </td>
+        <td>
+            <input type="text" name="description" placeholder="description"  value="{{ expense.description }}" required>
+
+            <button type="submit" name="add">add</button>
+        </td>
+        
+    </form>
+    <a href="{% url 'expense_list' %}">Back to Expense List</a> 
+{% endblock %}

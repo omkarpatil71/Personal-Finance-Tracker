@@ -1,0 +1,31 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h1>Create Income Entry</h1>
+<form method="post" >
+    {% csrf_token %}
+    
+    <td>
+        <input type="number" name="Sr_no"  placeholder="Sr_no" value="{{ income.Sr_no }}" required>
+    </td>
+    <td>
+        <input type="number" name="amount" placeholder="amount" value="{{ income.amount }}" required>
+    </td>
+    <td>
+        <input type="text" name="source" placeholder="source" value="{{ income.source }}" required>
+    </td>
+    <td>
+        <input type="date" name="date"  value="{{ income.date|date:'Y-m-d' }}" required>
+    </td>
+    <td>
+        <input type="text" name="description" placeholder="description"  value="{{ income.description }}" required>
+
+        <a class="btn btn-light" type="submit" role="button">Add</a>
+  
+    <a href="{% url 'income_list' %}">Back to income List</a> 
+    
+</form>
+ 
+
+
+{% endblock %}
